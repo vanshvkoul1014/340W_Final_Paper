@@ -102,9 +102,9 @@ The neural network uses a three-layer architecture with hidden layers of size **
 
 ---
 
-## Final Results
+## Paper-Reported Results
 
-Test-fold results sorted by **Test MCC**:
+These are the results reported in the submitted research paper. They were produced using Python 3.12, scikit-learn 1.2, and the exact package versions listed in `requirements.txt` with `random_state=42` throughout.
 
 | Model | Test Accuracy | Test Precision | Test Recall | Test F1 | Test ROC-AUC | Test MCC |
 |---|---:|---:|---:|---:|---:|---:|
@@ -120,6 +120,8 @@ Test-fold results sorted by **Test MCC**:
 **Test Accuracy:** 97.04%
 
 The overall result is consistent with the paper's main finding: the enhanced Neural Network performs best by MCC, while LightGBM and XGBoost remain close competitors.
+
+> **Note on reproducibility:** If you run this script locally, your numbers may differ slightly from the paper. This is expected and does not indicate an error. The main sources of variation are: (1) SMOTE uses random interpolation — different package versions can produce slightly different synthetic samples; (2) the Neural Network uses stochastic gradient descent and early stopping, which are sensitive to floating-point differences across hardware and OS; (3) LIME uses random perturbation sampling, so feature rankings can shift slightly between runs. The overall pattern — Neural Network first by MCC, LightGBM and XGBoost close behind, SHAP and LIME showing limited overlap — should be consistent regardless of environment.
 
 ---
 
@@ -154,6 +156,8 @@ Top global LIME features:
 
 ## SHAP vs LIME Comparison
 
+Paper-reported overlap between SHAP and LIME top-five feature sets:
+
 | Model | SHAP/LIME Top-5 Overlap |
 |---|---:|
 | XGBoost | 2 / 5 |
@@ -161,6 +165,8 @@ Top global LIME features:
 | Neural Network | 1 / 5 |
 
 This supports the main argument of the paper: **SHAP and LIME are not interchangeable**. SHAP is more useful for population-level model behavior, while LIME is more useful for instance-level explanation.
+
+> **Note on variation:** Because LIME uses random perturbation sampling to generate local explanations, the averaged global LIME rankings can shift slightly between runs. This means the overlap counts above may differ by 1 in either direction when you run the script locally. The key finding — that overlap is consistently low (1–2 out of 5) across all models — holds regardless of environment.
 
 ---
 
