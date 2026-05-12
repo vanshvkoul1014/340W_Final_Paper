@@ -1,6 +1,6 @@
 # Credit Risk Prediction with Dual Explainable AI (SHAP & LIME)
 
-**DS 340W / CMPSC 448 — Penn State University — Spring 2026**
+**DS 340W — Penn State University — Spring 2026**
 **Author:** Vansh Vinod Koul
 
 ---
